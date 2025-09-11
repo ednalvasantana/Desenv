@@ -2,216 +2,169 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Disable Calls — Protegendo Você, Sempre!</title>
-
-  <!-- Materialize CSS (CDN) -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-
+  <meta name="description" content="Disable Calls — app que bloqueia chamadas indesejadas após instalação e permissões." />
   <style>
     :root{
-      --primary:#1e88e5; /* azul material */
-      --accent:#ff7043;
-      --bg:#f5f7fb;
-      --card:#ffffff;
+      --primary:#0b63ff;
+      --surface:#ffffff;
+      --muted:#6b7280;
+      --card:#f7f9ff;
+      --radius:12px;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
     }
-    body{background:var(--bg);}    
-    .hero{padding:6rem 1rem 3rem;}
-    .app-mock{
-      width:100%;
-      max-width:360px;
-      border-radius:18px;
-      box-shadow:0 8px 30px rgba(30,40,60,0.12);
-      overflow:hidden;
-      background:linear-gradient(180deg,#ffffff 0%, #f6f9ff 100%);
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f3f6ff 0%,#ffffff 100%);color:#0f172a}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;background:var(--surface);border-radius:14px;display:grid;place-items:center;box-shadow:0 6px 16px rgba(11,99,255,0.12)}
+    .logo svg{width:36px;height:36px}
+    .title{font-weight:700;font-size:18px}
+    .slogan{color:var(--muted);font-size:13px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 28px}
+    .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(11,99,255,0.06)}
+
+    .hero h1{margin:0;font-size:28px}
+    .hero p{color:var(--muted);line-height:1.5}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .btn-primary{background:var(--primary);color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--muted)}
+
+    .phone-mock{width:100%;height:520px;border-radius:24px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;border:1px solid rgba(15,23,42,0.04)}
+    .screen{width:320px;height:480px;border-radius:16px;background:linear-gradient(180deg,#0f172a 0%,#0b63ff 100%);color:white;display:flex;flex-direction:column;overflow:hidden}
+    .screen .top{padding:12px;display:flex;align-items:center;gap:8px}
+    .screen .incoming{flex:1;display:grid;place-items:center;padding:18px;text-align:center}
+    .pill{background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;font-size:13px}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px}
+    .feature{background:white;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+    .feature h4{margin:8px 0 6px}
+    .feature p{margin:0;color:var(--muted);font-size:13px}
+
+    footer{padding:22px 28px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .phone-mock{height:auto}
+      .features{grid-template-columns:1fr 1fr}
     }
-    .feature-icon{font-size:2.2rem}
-    .center-cta{display:flex;gap:1rem;align-items:center}
-    .download-btn{min-width:170px}
-    footer.page-footer{padding-top:20px}
-    @media(min-width:992px){
-      .hero{padding:8rem 1rem 4rem}
+    @media(max-width:520px){
+      .features{grid-template-columns:1fr}
+      .logo{width:48px;height:48px}
+      .hero h1{font-size:22px}
     }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav class="white z-depth-0">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo" style="color:var(--primary);font-weight:700">Disable Calls</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#features">Recursos</a></li>
-        <li><a href="#howitworks">Como funciona</a></li>
-        <li><a href="#download" class="btn-flat">Baixar</a></li>
-      </ul>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <!-- simple phone + block icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4" width="14" height="16" rx="3" fill="#ffffff"/>
+          <path d="M20 8.5L17.5 11" stroke="#0b63ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18.3" cy="6.8" r="1.8" fill="#0b63ff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="title">Disable Calls</div>
+        <div class="slogan">Disable Calls. Protegendo Você, Sempre!</div>
+      </div>
     </div>
-  </nav>
+    <nav>
+      <button class="btn btn-ghost">Sobre</button>
+      <button class="btn btn-ghost">Recursos</button>
+      <button class="btn btn-ghost">Contato</button>
+    </nav>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="row valign-wrapper">
-        <div class="col s12 m7">
-          <h3 style="margin-bottom:8px">Disable Calls</h3>
-          <p class="flow-text grey-text text-darken-2">Bloqueie chamadas indesejadas automaticamente. Seguro, discreto e fácil de usar — após instalar e conceder permissões, o app já começa a proteger você.</p>
-
-          <div class="section">
-            <div class="center-cta">
-              <a id="download" href="#download" class="btn waves-effect waves-light" style="background:var(--primary);">Baixar APK</a>
-              <a href="#features" class="btn-flat">Ver recursos</a>
-            </div>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="card">
+          <h1>Seu escudo contra chamadas indesejadas</h1>
+          <p>Disable Calls bloqueia automaticamente chamadas desconhecidas e mantém uma blacklist local. Após instalar e conceder permissões necessárias, o app começa a proteger seu tempo e privacidade.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary">Instalar APK</button>
+            <button class="btn btn-ghost">Ver tutorial</button>
           </div>
 
-          <ul class="collection z-depth-0" style="margin-top:18px">
-            <li class="collection-item">🔒 Privacidade: nenhum dado é enviado a servidores externos.</li>
-            <li class="collection-item">⚙️ Simples: instale, conceda permissões e pronto.</li>
+          <div style="margin-top:18px;display:flex;gap:12px;align-items:flex-start">
+            <div style="flex:1">
+              <strong>Como funciona</strong>
+              <p style="margin:6px 0 0;color:var(--muted);font-size:13px">Intercepta chamadas, verifica contatos e registra números desconhecidos em blacklist — com opção de visualizar e remover.</p>
+            </div>
+            <div style="width:130px;text-align:center">
+              <small style="color:var(--muted)">Versão</small>
+              <div style="font-weight:700">1.0.0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <strong>Destaques</strong>
+          <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+            <li>Bloqueio automático de chamadas desconhecidas</li>
+            <li>Blacklist local com remoção fácil</li>
+            <li>Notificações e histórico de chamadas bloqueadas</li>
           </ul>
         </div>
+      </div>
 
-        <div class="col s12 m5 center">
-          <div class="app-mock" aria-hidden="true">
-            <!-- Simulação de tela do app -->
-            <div style="padding:18px 16px;background:linear-gradient(90deg,#1e88e5,#1976d2);color:white;display:flex;align-items:center;justify-content:space-between">
-              <div style="font-weight:700">Disable Calls</div>
-              <i class="material-icons">settings_phone</i>
+      <aside>
+        <div class="phone-mock">
+          <div style="font-size:13px;color:var(--muted);align-self:flex-start">Simulação do app</div>
+          <div class="screen">
+            <div class="top">
+              <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15)"></div>
+              <div style="flex:1"></div>
+              <div class="pill">Bloqueando</div>
             </div>
-            <div style="padding:18px">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-                <div>
-                  <div style="font-size:0.9rem;color:#3a475b">Chamadas Bloqueadas</div>
-                  <div style="font-weight:700;font-size:1.1rem">128</div>
-                </div>
-                <div style="text-align:right">
-                  <div style="font-size:0.9rem;color:#3a475b">Lista negra</div>
-                  <div style="font-weight:700">54 números</div>
-                </div>
-              </div>
-
-              <div style="height:220px;background:#fff;border-radius:12px;padding:12px;overflow:auto;box-shadow:inset 0 1px 0 rgba(0,0,0,0.03)">
-                <ul style="margin:0;padding:0;list-style:none">
-                  <li style="padding:8px 6px;border-bottom:1px solid #f1f4f8;display:flex;justify-content:space-between;align-items:center">
-                    <div>
-                      <div style="font-weight:600">(11) 9 9876-5432</div>
-                      <div style="font-size:0.85rem;color:#607d8b">Desconhecido • 06 set 2025</div>
-                    </div>
-                    <a class="btn-flat"><i class="material-icons">block</i></a>
-                  </li>
-                  <li style="padding:8px 6px;border-bottom:1px solid #f1f4f8;display:flex;justify-content:space-between;align-items:center">
-                    <div>
-                      <div style="font-weight:600">Número Privado</div>
-                      <div style="font-size:0.85rem;color:#607d8b">Oculto • 05 set 2025</div>
-                    </div>
-                    <a class="btn-flat"><i class="material-icons">block</i></a>
-                  </li>
-                  <!-- Mais itens placeholder -->
-                </ul>
+            <div class="incoming">
+              <div>
+                <div style="font-size:24px;font-weight:700">Número desconhecido</div>
+                <div style="margin-top:6px;opacity:0.9">+55 11 9XXXX-XXXX</div>
+                <div style="margin-top:12px;font-size:13px;opacity:0.95">Chamada bloqueada automaticamente</div>
               </div>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features" class="section white">
-    <div class="container">
-      <h5>Recursos principais</h5>
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="card z-depth-1">
-            <div class="card-content">
-              <span class="card-title">Bloqueio automático</span>
-              <p>Detecta e bloqueia chamadas de spammers e privados sem intervenção do usuário.</p>
+            <div style="padding:14px;display:flex;gap:8px;justify-content:center;align-items:center">
+              <button class="btn" style="border-radius:999px;background:rgba(255,255,255,0.08);color:white;padding:10px 14px">Ver histórico</button>
+              <button class="btn" style="border-radius:999px;background:rgba(255,255,255,0.12);color:white;padding:10px 14px">Configurações</button>
             </div>
           </div>
-        </div>
 
-        <div class="col s12 m4">
-          <div class="card z-depth-1">
-            <div class="card-content">
-              <span class="card-title">Lista negra</span>
-              <p>Adicione números manualmente ou salve rapidamente a partir do registro de chamadas.</p>
-            </div>
+          <div style="width:100%;display:flex;justify-content:center;margin-top:12px">
+            <small style="color:var(--muted)">Captura de tela simulada — personalizável</small>
           </div>
         </div>
+      </aside>
+    </section>
 
-        <div class="col s12 m4">
-          <div class="card z-depth-1">
-            <div class="card-content">
-              <span class="card-title">Modo discreto</span>
-              <p>Notificações silenciosas e logs detalhados para revisar chamadas bloqueadas.</p>
-            </div>
-          </div>
-        </div>
+    <section class="features">
+      <div class="feature">
+        <strong>Interceptação segura</strong>
+        <p>Usa permissões oficiais do Android e RoleManager para garantir funcionamento correto sem acesso indevido.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="howitworks" class="section">
-    <div class="container">
-      <h5>Como funciona</h5>
-      <ol class="browser-default">
-        <li>Instale o app e aceite as permissões necessárias (ler chamadas, contatos e papel de triagem de chamadas).</li>
-        <li>O app analisa chamadas em tempo real e bloqueia números com comportamento suspeito.</li>
-        <li>Você pode revisar o histórico e adicionar números à lista negra manualmente.</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- DOWNLOAD / CTA -->
-  <section class="section white">
-    <div class="container">
-      <div class="row valign-wrapper">
-        <div class="col s12 m6">
-          <h5>Pronto para ficar livre de chamadas indesejadas?</h5>
-          <p>Baixe o APK e comece a proteger seu celular em poucos minutos.</p>
-          <a href="#" class="btn download-btn">Baixar APK</a>
-          <a href="#" class="btn-flat">Instruções de instalação</a>
-        </div>
-        <div class="col s12 m6">
-          <div class="card-panel grey lighten-4">
-            <strong>Requisitos</strong>
-            <ul class="browser-default">
-              <li>Android 8.0+ (recomenda-se)</li>
-              <li>Permissões: Leitura de chamadas, contatos e acesso de triagem</li>
-              <li>Espaço: ~5 MB</li>
-            </ul>
-          </div>
-        </div>
+      <div class="feature">
+        <strong>Controle do usuário</strong>
+        <p>Você decide quais números remover ou manter na blacklist.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="page-footer white">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m6">
-          <h6 style="color:var(--primary);">Disable Calls</h6>
-          <p class="grey-text text-darken-1">Protegendo Você, Sempre! • © 2025</p>
-        </div>
-        <div class="col s12 m6 right-align">
-          <a href="#" class="grey-text text-darken-2">Política de Privacidade</a>
-          <span style="margin:0 8px">•</span>
-          <a href="#" class="grey-text text-darken-2">Contato</a>
-        </div>
+      <div class="feature">
+        <strong>Leve e eficiente</strong>
+        <p>Desenvolvido para consumir poucos recursos e bateria.</p>
       </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Disable Calls — Desenvolvido por você</div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <small style="color:var(--muted)">Quer personalizar esta página?</small>
+      <button class="btn btn-primary">Peça mudanças</button>
     </div>
   </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-    });
-  </script>
 </body>
 </html>
-
